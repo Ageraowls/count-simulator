@@ -1,0 +1,8 @@
+@import './variables', './fonts';
+
+body {
+  height: 100vh;
+  font-family: $brutalist-font-family;
+  background-color: $ashamed-color;
+  color: $russian-violet-color;
+}
