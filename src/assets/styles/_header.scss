@@ -1,0 +1,113 @@
+@import './variables';
+
+.header {
+  width: 100%;
+  height: 4rem;
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  color: $white-color;
+  background: $dark-purple-color;
+
+  &__logo {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    transition: $header-transition;
+  }
+}
+
+.header__logo:hover {
+  transform: scale(1.1);
+  transition: $header-transition;
+}
+
+.navigation {
+  margin-left: auto;
+  margin-right: 10rem;
+
+  &__list {
+    display: flex;
+    gap: 3rem;
+  }
+
+  &__list-item {
+    list-style-type: none;
+    cursor: pointer;
+    transition: $header-transition;
+
+    &:hover {
+      color: $ashamed-color;
+      transition: $header-transition;
+    }
+  }
+}
+
+.burger-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 2rem;
+  gap: 0.2rem;
+  cursor: pointer;
+  transition: $header-transition;
+
+  &__line {
+    width: 100%;
+    height: 0.2rem;
+    background: $white-color;
+    border-radius: 0.2rem;
+  }
+
+  &:hover &__line {
+    background: $ashamed-color;
+    transition: $header-transition;
+  }
+}
+
+.burger-menu.active .line-middle {
+  opacity: 0;
+}
+.burger-menu.active .line-top {
+  transform: translate(0, 5px) rotate(45deg);
+}
+.burger-menu.active .line-bottom {
+  transform: translate(0, -8px) rotate(-45deg);
+}
+
+.burger-menu {
+  display: none;
+}
+
+@media (min-width: 320px) and (max-width: 960px) {
+  .header {
+    justify-content: space-between;
+  }
+
+  .navigation {
+    margin: 0;
+  }
+}
+
+@media (max-width: 440px) {
+  .header {
+    justify-content: space-between;
+  }
+
+  .navigation {
+    display: none;
+  }
+
+  .burger-menu {
+    display: flex;
+  }
+}
+
+@media (max-width: 500px) {
+  .navigation {
+    &__list {
+      gap: 1rem;
+    }
+  }
+}

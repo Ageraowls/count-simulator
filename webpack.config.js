@@ -59,6 +59,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
+      favicon: '../public/favicon.svg',
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
@@ -73,6 +74,10 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'src/assets/fonts'),
           to: path.resolve(__dirname, 'dist', 'assets/fonts'),
+        },
+        {
+          from: path.resolve(__dirname, 'public'),
+          to: path.resolve(__dirname, 'dist', ''),
         },
       ],
     }),

@@ -1,12 +1,11 @@
 import 'normalize.css';
 import './assets/styles/index.scss';
+import { createHeader } from './components/header';
 
-function sayHi() {
-  const str = 'Hello World';
+document.body.innerHTML = createHeader();
 
-  return str.toUpperCase();
-}
+const burger = document.querySelector('.burger-menu');
 
-document.body.insertAdjacentHTML('beforeend', sayHi());
-document.body.style.fontSize = '80px';
-document.body.style.textAlign = 'center';
+burger.addEventListener('click', () => {
+  burger.classList.toggle('active');
+});
