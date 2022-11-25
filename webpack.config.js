@@ -46,7 +46,6 @@ module.exports = {
       '.scss',
     ],
   },
-  target: 'web',
   devServer: {
     port: 3000,
     open: true,
