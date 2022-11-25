@@ -13,17 +13,17 @@ const drawPage = () => {
   `;
 };
 
-function openNavigation(menu) {
-  const navigation = document.querySelector('.navigation');
-  if (menu.classList.contains('active')) {
-    navigation.style.transform = 'translateX(0)';
-  } else {
-    navigation.removeAttribute('style');
-  }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   document.body.insertAdjacentHTML('afterbegin', drawPage());
+
+  function openNavigation(menu) {
+    const navigation = document.querySelector('.navigation');
+    if (menu.classList.contains('active')) {
+      navigation.style.transform = 'translateX(0)';
+    } else {
+      navigation.removeAttribute('style');
+    }
+  }
 
   const burger = document.querySelector('.burger-menu');
 
