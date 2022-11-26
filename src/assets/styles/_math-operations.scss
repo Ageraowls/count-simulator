@@ -1,0 +1,47 @@
+@import './variables';
+
+.math-operators-list {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 0.5rem 0.5rem;
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.math-operators-item {
+  cursor: pointer;
+  svg {
+    display: block;
+    fill: $dark-purple-color;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  svg:hover {
+    transform: scale(1.1);
+  }
+}
+
+.operations {
+  display: flex;
+  padding: 0 0.7rem;
+  gap: 1rem;
+  align-items: center;
+  box-shadow: $main-box-shadow;
+}
+
+@media (min-width: 320px) and (max-width: 386px) {
+  .operations {
+    gap: 0;
+  }
+  .math-operators-item {
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+  }
+  .operations-choose {
+    font-size: 0.9rem;
+  }
+}

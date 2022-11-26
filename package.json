@@ -2,7 +2,7 @@
   "name": "count-simulator",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./src/app.js",
   "scripts": {
     "dev": "webpack --mode development",
     "start": "webpack-dev-server --mode development --hot --open",

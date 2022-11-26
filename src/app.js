@@ -1,6 +1,7 @@
 import { createHeader } from './components/header';
 import { createMain } from './components/main';
 import { createFooter } from './components/footer';
+import { mathOperators } from './components/basicMathOperations';
 
 import 'normalize.css';
 import './assets/styles/index.scss';
@@ -32,4 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     openNavigation(burger);
   });
+
+  const operations = [...document.querySelectorAll('.math-operators-item')];
+
+  let currentOperation = '';
+
+  operations.forEach((item) => {
+    item.addEventListener('click', () => {
+      if (item.classList.contains('plus')) {
+        currentOperation = mathOperators.plus;
+      } else if (item.classList.contains('minus')) {
+        currentOperation = mathOperators.minus;
+      } else if (item.classList.contains('division')) {
+        currentOperation = mathOperators.division;
+      } else if (item.classList.contains('multi')) {
+        currentOperation = mathOperators.multi;
+      }
+    });
+  });
+
+  console.log(currentOperation);
 });

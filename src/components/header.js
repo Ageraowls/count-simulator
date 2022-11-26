@@ -1,4 +1,4 @@
-import { createBurgerMenu } from './burger-menu';
+import { createBurgerMenu } from './burgerMenu';
 import favicon from '../assets/images/icons/favicon.svg';
 
 const createHeader = () => {

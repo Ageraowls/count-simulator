@@ -1,5 +1,18 @@
-@import './variables';
+@import './variables', './math-operations';
 
 .main {
+  width: 100%;
+  padding: 2rem 0;
+  height: 80%;
+  margin: 0 auto;
   flex: 1 0 auto;
+}
+
+.game {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: end;
+  box-shadow: $main-box-shadow;
 }
