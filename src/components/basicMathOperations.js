@@ -2,7 +2,7 @@ const mathOperators = {
   plus: '+',
   minus: '-',
   division: '/',
-  multi: '*',
+  multi: 'x',
 };
 
 const createBasicMathOperations = () => {

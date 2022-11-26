@@ -2,6 +2,7 @@ import { createHeader } from './components/header';
 import { createMain } from './components/main';
 import { createFooter } from './components/footer';
 import { mathOperators } from './components/basicMathOperations';
+import { checkActiveButton } from './helpers/checkActiveButton';
 
 import 'normalize.css';
 import './assets/styles/index.scss';
@@ -36,21 +37,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const operations = [...document.querySelectorAll('.math-operators-item')];
 
+  function chooseOperators(operator) {
+    const current = document.querySelector('.operator');
+    current.innerHTML = operator;
+  }
+
+  const firstNumber = document.querySelector('.first-number').textContent;
+  const secondNumber = document.querySelector('.second-number').textContent;
+
+  // eslint-disable-next-line consistent-return
+  function equalsNumbers(first, operator, second) {
+    switch (operator) {
+      case '+':
+        return +first + +second;
+      case '-':
+        return first - second;
+      case 'x':
+        return first * second;
+      case '/':
+        return +(first / second).toFixed(1);
+    }
+  }
+
+  const answer = document.querySelector('.answer');
   let currentOperation = '';
 
+  const { plus, minus, division, multi } = mathOperators;
+  // prettier-ignore
   operations.forEach((item) => {
     item.addEventListener('click', () => {
       if (item.classList.contains('plus')) {
-        currentOperation = mathOperators.plus;
+        currentOperation = plus;
+        chooseOperators(currentOperation);
+        answer.textContent = equalsNumbers(firstNumber, currentOperation, secondNumber);
       } else if (item.classList.contains('minus')) {
-        currentOperation = mathOperators.minus;
+        currentOperation = minus;
+        chooseOperators(currentOperation);
+        answer.textContent = equalsNumbers(firstNumber, currentOperation, secondNumber);
       } else if (item.classList.contains('division')) {
-        currentOperation = mathOperators.division;
+        currentOperation = division;
+        chooseOperators(currentOperation);
+        answer.textContent = equalsNumbers(firstNumber, currentOperation, secondNumber);
       } else if (item.classList.contains('multi')) {
-        currentOperation = mathOperators.multi;
+        currentOperation = multi;
+        chooseOperators(currentOperation);
+        answer.textContent = equalsNumbers(firstNumber, currentOperation, secondNumber);
       }
     });
   });
 
-  console.log(currentOperation);
+  const calculatorNumbers = document.querySelector('.calculator__numbers');
+  calculatorNumbers.addEventListener('click', checkActiveButton);
 });

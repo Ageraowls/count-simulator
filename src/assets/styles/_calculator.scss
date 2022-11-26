@@ -1,0 +1,60 @@
+@import './variables';
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 300px;
+  margin: 1rem auto;
+  padding: 0.5rem 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.7rem;
+    height: 2.7rem;
+    box-shadow: $main-box-shadow;
+  }
+
+  &__window {
+    display: flex;
+    padding: 0.7rem 0.7rem;
+    font-size: 1.5rem;
+    gap: 1.3rem;
+    justify-content: center;
+  }
+
+  &__numbers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    gap: 2rem;
+    box-shadow: $main-box-shadow;
+  }
+}
+
+.calculator__numbers-item {
+  width: 3.7rem;
+  height: 3.7rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  color: $russian-violet-color;
+  background: transparent;
+  box-shadow: $main-box-shadow;
+  cursor: pointer;
+  border: none;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: $header-transition;
+  }
+}
+
+.active-num {
+  background: $dark-purple-color;
+  color: $white-color;
+  transform: scale(1.1);
+}
