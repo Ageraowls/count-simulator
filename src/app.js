@@ -86,6 +86,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  function checkCurrentAnswer() {
+    return equalsNumbers(firstNumber, currentOperation, secondNumber);
+  }
+
+  const currentAnswer = checkCurrentAnswer;
+
+  function checkLengthAnswer(str) {
+    if (str.length <= 3) {
+      return str.slice(0, str.length);
+    }
+
+    if (str.length >= 3) {
+      return str.slice(1, str.length);
+    }
+  }
+
+  function inputAnswer() {
+    const numbers = [...document.querySelectorAll('[data-matrix-id]')];
+    let res = '';
+
+    numbers.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        const num = e.target.dataset.matrixId;
+        res += num;
+
+        if (res.length <= 3) {
+          answer.textContent = res;
+        } else {
+          res = res.slice(1, res.length);
+          answer.textContent = res;
+        }
+      });
+    });
+  }
+
+  inputAnswer();
+  setInterval(() => console.log('shit: ' + answer.textContent), 1000);
+
   const calculatorNumbers = document.querySelector('.calculator__numbers');
   calculatorNumbers.addEventListener('click', checkActiveButton);
 });
