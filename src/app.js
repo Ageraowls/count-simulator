@@ -2,7 +2,7 @@ import { createHeader } from './components/header';
 import { createMain } from './components/main';
 import { createFooter } from './components/footer';
 import { mathOperators } from './components/basicMathOperations';
-import { checkActiveButton } from './helpers/checkActiveButton';
+import { checkActiveButton, clearStyle } from './helpers/checkActiveButton';
 
 import 'normalize.css';
 import './assets/styles/index.scss';
@@ -42,22 +42,33 @@ document.addEventListener('DOMContentLoaded', () => {
     current.innerHTML = operator;
   }
 
-  const firstNumber = document.querySelector('.first-number').textContent;
-  const secondNumber = document.querySelector('.second-number').textContent;
+  const randomNumber = () => {
+    return Math.floor(Math.random() * (10 - 0)) + 1;
+  };
 
   // eslint-disable-next-line consistent-return
   function equalsNumbers(first, operator, second) {
     switch (operator) {
-      case '+':
-        return +first + +second;
       case '-':
         return first - second;
       case 'x':
         return first * second;
       case '/':
         return +(first / second).toFixed(1);
+      default:
+        return +first + +second;
     }
   }
+
+  function game() {
+    const num1 = document.querySelector('.first-number');
+    const num2 = document.querySelector('.second-number');
+
+    num1.textContent = randomNumber();
+    num2.textContent = randomNumber();
+  }
+
+  game();
 
   const answer = document.querySelector('.answer');
   let currentOperation = '';
@@ -69,38 +80,27 @@ document.addEventListener('DOMContentLoaded', () => {
       if (item.classList.contains('plus')) {
         currentOperation = plus;
         chooseOperators(currentOperation);
-        answer.textContent = equalsNumbers(firstNumber, currentOperation, secondNumber);
       } else if (item.classList.contains('minus')) {
         currentOperation = minus;
         chooseOperators(currentOperation);
-        answer.textContent = equalsNumbers(firstNumber, currentOperation, secondNumber);
       } else if (item.classList.contains('division')) {
         currentOperation = division;
         chooseOperators(currentOperation);
-        answer.textContent = equalsNumbers(firstNumber, currentOperation, secondNumber);
       } else if (item.classList.contains('multi')) {
         currentOperation = multi;
         chooseOperators(currentOperation);
-        answer.textContent = equalsNumbers(firstNumber, currentOperation, secondNumber);
       }
     });
   });
 
   function checkCurrentAnswer() {
-    return equalsNumbers(firstNumber, currentOperation, secondNumber);
+    const first = document.querySelector('.first-number').textContent;
+    const second = document.querySelector('.second-number').textContent;
+    const operator = document.querySelector('.operator').textContent;
+    return equalsNumbers(first, operator, second);
   }
 
   const currentAnswer = checkCurrentAnswer;
-
-  function checkLengthAnswer(str) {
-    if (str.length <= 3) {
-      return str.slice(0, str.length);
-    }
-
-    if (str.length >= 3) {
-      return str.slice(1, str.length);
-    }
-  }
 
   function inputAnswer() {
     const numbers = [...document.querySelectorAll('[data-matrix-id]')];
@@ -110,19 +110,42 @@ document.addEventListener('DOMContentLoaded', () => {
       item.addEventListener('click', (e) => {
         const num = e.target.dataset.matrixId;
         res += num;
+        answer.textContent = res;
 
-        if (res.length <= 3) {
+        if (res.length >= 3) {
           answer.textContent = res;
-        } else {
           res = res.slice(1, res.length);
-          answer.textContent = res;
         }
       });
     });
   }
 
+  function resetEqual() {
+    inputAnswer();
+    answer.textContent = '?';
+  }
+
+  answer.addEventListener('click', resetEqual);
+
+  function checkEqual() {
+    const res = document.querySelector('.answer').textContent;
+
+    if (+res === currentAnswer()) {
+      game();
+      clearStyle();
+      resetEqual();
+    }
+
+    return false;
+  }
+
   inputAnswer();
-  setInterval(() => console.log('shit: ' + answer.textContent), 1000);
+
+  function checkGame() {
+    setInterval(() => checkEqual(), 1000);
+  }
+
+  checkGame();
 
   const calculatorNumbers = document.querySelector('.calculator__numbers');
   calculatorNumbers.addEventListener('click', checkActiveButton);

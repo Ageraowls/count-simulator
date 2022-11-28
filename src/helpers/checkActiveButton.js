@@ -12,4 +12,11 @@ function checkActiveButton(e) {
   }
 }
 
-export { checkActiveButton };
+function clearStyle() {
+  const buttons = [...document.querySelectorAll('.calculator__numbers-item')];
+  buttons.forEach((item) => {
+    item.classList.remove('active-num');
+  });
+}
+
+export { checkActiveButton, clearStyle };
