@@ -32,4 +32,32 @@ const createBasicMathOperations = () => {
   `;
 };
 
-export { createBasicMathOperations, mathOperators };
+const currentOperator = () => {
+  const curOperator = document.querySelector('.operator');
+
+  switch (curOperator.textContent) {
+    case '-':
+      return 'minus';
+    case 'x':
+      return 'multi';
+    case '/':
+      return 'division';
+    default:
+      return 'plus';
+  }
+};
+
+const changeOperatorChoose = (text) => {
+  return `
+    <svg class="plus">
+      <use xlink:href="./assets/images/icons/sprite.svg#${text}"></use>
+    </svg>
+  `;
+};
+
+export {
+  createBasicMathOperations,
+  mathOperators,
+  currentOperator,
+  changeOperatorChoose,
+};

@@ -13,7 +13,7 @@
   cursor: pointer;
   svg {
     display: block;
-    fill: $dark-purple-color;
+    fill: $white-color;
     width: 2rem;
     height: 2rem;
   }
@@ -23,26 +23,94 @@
   }
 }
 
-.operations {
+.operator-desc {
   display: flex;
+  align-items: center;
+  gap: 1rem;
+  svg {
+    display: block;
+    fill: $white-color;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+
+  svg:hover {
+    transform: scale(1.1);
+  }
+}
+
+.operations,
+.operator-choose {
+  display: flex;
+  color: $white-color;
   justify-content: right;
   padding: 0 0.7rem;
   gap: 1rem;
   align-items: center;
   box-shadow: $main-box-shadow;
+  background: $dark-purple-color;
+  transition: 0.2s linear;
+}
+
+.operations {
+  position: relative;
+}
+
+.operator-choose {
+  position: absolute;
+  width: 100%;
+  right: 0;
+  z-index: -1;
+  padding: 0.5rem 0.5rem;
+}
+
+.hidden {
+  right: 0;
+  z-index: -2;
+}
+
+.show {
+  z-index: 2;
+}
+
+.show-menu {
+  transform: translateY(100%);
+  transition: 0.2s linear;
+  z-index: 1;
+}
+
+.operator-change {
+  display: block;
+  border: none;
+  border-radius: 0.2rem;
+  background: $white-color;
+  width: 6rem;
+  box-shadow: $main-box-shadow;
+  transition: 0.3s linear;
+  cursor: pointer;
 }
 
 @media (min-width: 320px) and (max-width: 386px) {
   .operations {
     gap: 0;
   }
-  .math-operators-item {
+  .math-operators-item,
+  .operator-choose {
     svg {
       width: 1.4rem;
       height: 1.4rem;
     }
   }
-  .operations-choose {
+  .operations-choose,
+  .operator-choose {
+    justify-content: center;
     font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 375px) {
+  .operator-choose {
+    padding: 0.2rem 0.7rem;
   }
 }

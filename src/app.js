@@ -1,7 +1,13 @@
 import { createHeader } from './components/header';
 import { createMain } from './components/main';
 import { createFooter } from './components/footer';
-import { mathOperators } from './components/basicMathOperations';
+
+import {
+  mathOperators,
+  changeOperatorChoose,
+  currentOperator,
+} from './components/basicMathOperations';
+
 import { checkActiveButton, clearStyle } from './helpers/checkActiveButton';
 
 import 'normalize.css';
@@ -71,6 +77,28 @@ document.addEventListener('DOMContentLoaded', () => {
   game();
 
   const answer = document.querySelector('.answer');
+  const operatorDescSvg = document.querySelector('.svg-item');
+  const operationsDiv = document.querySelector('.operations');
+  const operationsChoose = document.querySelector('.operator-choose');
+  const operatorChangeBtn = document.querySelector('.operator-change');
+
+  operatorChangeBtn.addEventListener('click', () => {
+    operationsDiv.classList.toggle('show-menu');
+
+    if (!operationsDiv.classList.contains('show-menu')) {
+      operatorChangeBtn.textContent = 'Изменить';
+    }
+  });
+
+  function showAndHidden() {
+    operationsDiv.classList.add('hidden');
+    operationsChoose.classList.add('show');
+
+    if (operationsDiv.classList.contains('show-menu')) {
+      operatorChangeBtn.textContent = 'Скрыть';
+    }
+  }
+
   let currentOperation = '';
 
   const { plus, minus, division, multi } = mathOperators;
@@ -80,15 +108,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (item.classList.contains('plus')) {
         currentOperation = plus;
         chooseOperators(currentOperation);
+        operatorDescSvg.innerHTML = changeOperatorChoose(currentOperator());
+        showAndHidden();
       } else if (item.classList.contains('minus')) {
         currentOperation = minus;
         chooseOperators(currentOperation);
+        operatorDescSvg.innerHTML = changeOperatorChoose(currentOperator());
+        showAndHidden();
       } else if (item.classList.contains('division')) {
         currentOperation = division;
         chooseOperators(currentOperation);
+        operatorDescSvg.innerHTML = changeOperatorChoose(currentOperator());
+        showAndHidden();
       } else if (item.classList.contains('multi')) {
         currentOperation = multi;
         chooseOperators(currentOperation);
+        operatorDescSvg.innerHTML = changeOperatorChoose(currentOperator());
+        showAndHidden();
       }
     });
   });
