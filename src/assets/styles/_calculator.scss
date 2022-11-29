@@ -20,6 +20,7 @@
 
   .answer {
     width: 4rem;
+    cursor: pointer;
   }
 
   &__window {
@@ -61,4 +62,27 @@
   background: $dark-purple-color;
   color: $white-color;
   transform: scale(1.1);
+}
+
+@media (max-width: 420px) {
+  .calculator {
+    margin: 0 auto;
+
+    &__window {
+      display: flex;
+      padding: 0.7rem 0.7rem;
+      font-size: 1.2rem;
+      gap: 0.75rem;
+    }
+
+    &__item {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &__numbers {
+      width: 15rem;
+      gap: 1rem;
+    }
+  }
 }

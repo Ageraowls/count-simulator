@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   answer.addEventListener('click', resetEqual);
+  answer.addEventListener('click', clearStyle);
 
   function checkEqual() {
     const res = document.querySelector('.answer').textContent;

@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "webpack --mode development",
     "start": "webpack-dev-server --mode development --hot --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "keywords": [],
   "author": "Agera",
@@ -30,6 +32,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "normalize.css": "^8.0.1"
   }
 }
