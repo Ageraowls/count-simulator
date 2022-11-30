@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     operationsChoose.classList.add('show');
 
     if (operationsDiv.classList.contains('show-menu')) {
-      operatorChangeBtn.textContent = 'Скрыть';
+      operationsDiv.classList.remove('show-menu');
     }
   }
 
@@ -138,6 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const currentAnswer = checkCurrentAnswer;
 
+  const borderAnswer = document.querySelector('.answer');
+
   function inputAnswer() {
     const numbers = [...document.querySelectorAll('[data-matrix-id]')];
     let res = '';
@@ -145,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     numbers.forEach((item) => {
       item.addEventListener('click', (e) => {
         const num = e.target.dataset.matrixId;
+        borderAnswer.classList.add('false-answer');
         res += num;
         answer.textContent = res;
 
@@ -161,6 +164,12 @@ document.addEventListener('DOMContentLoaded', () => {
     answer.textContent = '?';
   }
 
+  function addStyleForTrueAnswer() {
+    borderAnswer.classList.remove('false-answer');
+    borderAnswer.classList.add('true-answer');
+    setTimeout(() => borderAnswer.classList.remove('true-answer'), 400);
+  }
+
   answer.addEventListener('click', resetEqual);
   answer.addEventListener('click', clearStyle);
 
@@ -168,9 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const res = document.querySelector('.answer').textContent;
 
     if (+res === currentAnswer()) {
-      game();
+      addStyleForTrueAnswer();
+      setTimeout(() => game(), 400);
       clearStyle();
-      resetEqual();
+      setTimeout(() => resetEqual(), 400);
     }
 
     return false;

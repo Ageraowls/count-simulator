@@ -14,9 +14,12 @@ function checkActiveButton(e) {
 
 function clearStyle() {
   const buttons = [...document.querySelectorAll('.calculator__numbers-item')];
+  const answerButton = document.querySelector('.answer');
   buttons.forEach((item) => {
     item.classList.remove('active-num');
   });
+
+  answerButton.classList.remove('false-answer');
 }
 
 export { checkActiveButton, clearStyle };

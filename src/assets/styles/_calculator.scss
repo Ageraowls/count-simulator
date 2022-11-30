@@ -16,6 +16,7 @@
     width: 2.7rem;
     height: 2.7rem;
     box-shadow: $main-box-shadow;
+    border-radius: 0.2rem;
   }
 
   .answer {
@@ -38,6 +39,7 @@
     padding: 1rem 0;
     gap: 2rem;
     box-shadow: $main-box-shadow;
+    border-radius: 0.2rem;
   }
 }
 
@@ -62,6 +64,14 @@
   background: $dark-purple-color;
   color: $white-color;
   transform: scale(1.1);
+}
+
+.true-answer {
+  box-shadow: 0 0 0.2rem green;
+}
+
+.false-answer {
+  box-shadow: 0 0 0.2rem red;
 }
 
 @media (max-width: 420px) {

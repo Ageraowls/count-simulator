@@ -12,6 +12,8 @@
   height: 100%;
   margin: 0 auto;
   box-shadow: $main-box-shadow;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.5);
 
   .game__inner {
     position: relative;

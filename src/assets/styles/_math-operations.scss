@@ -48,6 +48,8 @@
   padding: 0 0.7rem;
   gap: 1rem;
   align-items: center;
+  border-start-start-radius: 0.5rem;
+  border-start-end-radius: 0.5rem;
   box-shadow: $main-box-shadow;
   background: $dark-purple-color;
   transition: 0.2s linear;
@@ -77,6 +79,7 @@
 .show-menu {
   transform: translateY(100%);
   transition: 0.2s linear;
+  border-radius: 0;
   z-index: 1;
 }
 
@@ -91,7 +94,7 @@
   cursor: pointer;
 }
 
-@media (min-width: 320px) and (max-width: 386px) {
+@media (min-width: 320px) and (max-width: 420px) {
   .operations {
     gap: 0;
   }
@@ -109,8 +112,14 @@
   }
 }
 
-@media (min-width: 320px) and (max-width: 375px) {
+@media (min-width: 320px) and (max-width: 400px) {
   .operator-choose {
-    padding: 0.2rem 0.7rem;
+    padding: 0.17rem 0.7rem;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 423px) {
+  .operator-choose {
+    padding: 0.51rem 0.7rem;
   }
 }
