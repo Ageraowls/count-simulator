@@ -9,6 +9,7 @@ import {
 } from './components/basicMathOperations';
 
 import { checkActiveButton, clearStyle } from './helpers/checkActiveButton';
+import { keyBoardInput } from './components/keyboardInput';
 
 import 'normalize.css';
 import './assets/styles/index.scss';
@@ -153,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (res.length >= 3) {
           answer.textContent = res;
-          res = res.slice(1, res.length);
+          res = res.slice(res.length, 0);
         }
       });
     });
@@ -161,26 +162,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function resetEqual() {
     inputAnswer();
+    clearStyle();
     answer.textContent = '?';
   }
 
   function addStyleForTrueAnswer() {
     borderAnswer.classList.remove('false-answer');
     borderAnswer.classList.add('true-answer');
-    setTimeout(() => borderAnswer.classList.remove('true-answer'), 400);
+    setTimeout(() => borderAnswer.classList.remove('true-answer'), 100);
   }
 
   answer.addEventListener('click', resetEqual);
-  answer.addEventListener('click', clearStyle);
 
   function checkEqual() {
     const res = document.querySelector('.answer').textContent;
 
     if (+res === currentAnswer()) {
       addStyleForTrueAnswer();
-      setTimeout(() => game(), 400);
+      setTimeout(() => game(), 0);
       clearStyle();
-      setTimeout(() => resetEqual(), 400);
+      setTimeout(() => resetEqual(), 0);
     }
 
     return false;
@@ -196,4 +197,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const calculatorNumbers = document.querySelector('.calculator__numbers');
   calculatorNumbers.addEventListener('click', checkActiveButton);
+
+  /* keyboard */
+  keyBoardInput();
+
+  document.addEventListener('keydown', (e) => {
+    const buttons = [...document.querySelectorAll('.calculator__numbers-item')];
+    buttons.forEach((item) => {
+      if (item.textContent === e.key) {
+        item.classList.add('active-num');
+      } else {
+        item.classList.remove('active-num');
+      }
+    });
+  });
 });
