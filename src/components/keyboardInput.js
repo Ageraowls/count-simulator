@@ -1,9 +1,15 @@
+import { checkCurrentAnswer } from '../helpers/checkCurrentAnswer';
+
+const currentAnswer = checkCurrentAnswer;
+
 const keyBoardInput = () => {
   const answerInput = document.querySelector('.answer');
 
   let res = '';
 
-  answerInput.addEventListener('click', () => (res = ''));
+  answerInput.addEventListener('click', () => {
+    res = '';
+  });
 
   document.addEventListener('keydown', (e) => {
     // prettier-ignore
@@ -12,6 +18,11 @@ const keyBoardInput = () => {
     if (symbols.includes(e.key)) {
       res += e.key;
       answerInput.textContent = res;
+      answerInput.classList.add('false-answer');
+    }
+
+    if (currentAnswer() === +res) {
+      res = '';
     }
 
     if (e.key === 'Backspace') {
@@ -22,7 +33,6 @@ const keyBoardInput = () => {
     if (res.length > 4) {
       res = '';
       answerInput.textContent = res.length === 0 ? '?' : res;
-      console.log(res);
     }
   });
 };

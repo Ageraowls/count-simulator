@@ -9,6 +9,7 @@ import {
 } from './components/basicMathOperations';
 
 import { checkActiveButton, clearStyle } from './helpers/checkActiveButton';
+import { checkCurrentAnswer } from './helpers/checkCurrentAnswer';
 import { keyBoardInput } from './components/keyboardInput';
 
 import 'normalize.css';
@@ -52,20 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const randomNumber = () => {
     return Math.floor(Math.random() * (10 - 0)) + 1;
   };
-
-  // eslint-disable-next-line consistent-return
-  function equalsNumbers(first, operator, second) {
-    switch (operator) {
-      case '-':
-        return first - second;
-      case 'x':
-        return first * second;
-      case '/':
-        return +(first / second).toFixed(1);
-      default:
-        return +first + +second;
-    }
-  }
 
   function game() {
     const num1 = document.querySelector('.first-number');
@@ -129,13 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
-  function checkCurrentAnswer() {
-    const first = document.querySelector('.first-number').textContent;
-    const second = document.querySelector('.second-number').textContent;
-    const operator = document.querySelector('.operator').textContent;
-    return equalsNumbers(first, operator, second);
-  }
 
   const currentAnswer = checkCurrentAnswer;
 
